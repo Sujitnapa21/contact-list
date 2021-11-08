@@ -96,3 +96,19 @@
   color: #38015c;
 }
 
+@media screen and (max-width: 500px) {
+  .header p {
+    float: none;
+    display: block;
+    text-align: left;
+    justify-content: space-between;
+    width: auto;
+
+  }
+
+  .header-right {
+    float: none;
+  }
+
+}
+

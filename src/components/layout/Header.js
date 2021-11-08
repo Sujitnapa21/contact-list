@@ -18,37 +18,6 @@ const Header = () => {
   })
 
   return (
-    // <div className={classes.header}>
-    //   <div className={classes.logo}>Contact App</div>
-    //   <div className={classes.headerRight}></div>
-    //   <Link to="/">
-    //     <p
-    //       className={`${activeTab === "Home" ? "active" : ""} `}
-    //       onClick={() => setActiveTab("Home")}
-    //     >
-    //       Home
-    //     </p>
-    //   </Link>
-
-    //   <Link to="/add">
-    //     <p
-    //       className={`${activeTab === "AddContact" ? "active" : ""} `}
-    //       onClick={() => setActiveTab("AddContact")}
-    //     >
-    //       Add Contact
-    //     </p>
-    //   </Link>
-
-    //   <Link to="/about">
-    //     <p
-    //       className={`${activeTab === "About" ? "active" : ""} `}
-    //       onClick={() => setActiveTab("About")}
-    //     >
-    //       About
-    //     </p>
-    //   </Link>
-    // </div>
-
     <header className={classes.header}>
       <Link to="/">
         <div className={classes.logo}>Contact App</div>

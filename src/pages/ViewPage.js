@@ -1,9 +1,10 @@
 import React from "react";
+import View from "../components/view/View";
 
 const ViewPage = () => {
   return (
     <div>
-      <h2>View Page</h2>
+      <View/>
     </div>
   );
 };

@@ -5,15 +5,9 @@ import fireDb from "../../firebase";
 import { toast } from "react-toastify";
 
 const AddEdit = () => {
-  const initializeState = {
-    name: "",
-    email: "",
-    contact: "",
-  };
-  const [state, setState] = useState(initializeState);
-  const [data, setData] = useState({});
-
-  const { name, email, contact } = state;
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contact, setContact] = useState("");
 
   const history = useHistory();
 
@@ -22,40 +16,37 @@ const AddEdit = () => {
   useEffect(() => {
     fireDb.child("contacts").on("value", (snapshot) => {
       if (snapshot.val() !== null) {
-        setData({ ...snapshot.val() });
+        setName(snapshot.val()[id]?.name);
+        setEmail(snapshot.val()[id]?.email);
+        setContact(snapshot.val()[id]?.contact);
       } else {
-        setData({});
       }
     });
-
-    return () => {
-      setData({});
-    };
   }, [id]);
 
-  useEffect(() => {
-    if (id) {
-      setState({ ...data[id] });
-    } else {
-      setState({ ...initializeState });
-    }
-    return () => {
-      setState({ ...initializeState });
-    };
-  }, [id, data]);
-
-  const handlerInputChange = (event) => {
-    const { name, value } = event.target;
-    setState({ ...setState, [name]: value });
+  const handlerName = (event) => {
+    console.log(event.target.value);
+    setName(event.target.value);
+  };
+  const handlerEmail = (event) => {
+    console.log(event.target.value);
+    setEmail(event.target.value);
+  };
+  const handlerContact = (event) => {
+    console.log(event.target.value);
+    setContact(event.target.value);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    const newData = { name, email, contact };
+
     if (!name || !email || !contact) {
       toast.error("Please provide value in each input field");
     } else {
       if (!id) {
-        fireDb.child(`contacts`).push(state, (err) => {
+        fireDb.child(`contacts`).push(newData, (err) => {
           if (err) {
             toast.error(err);
           } else {
@@ -63,17 +54,18 @@ const AddEdit = () => {
           }
         });
       } else {
-        fireDb.child(`contacts/${id}`).set(state, (err) => {
-            if (err) {
-              toast.error(err);
-            } else {
-              toast.success("Contact Updated Successfully");
-            }
-          });
+        fireDb.child(`contacts/${id}`).set(newData, (err) => {
+          if (err) {
+            toast.error(err);
+          } else {
+            toast.success("Contact Updated Successfully");
+          }
+        });
       }
 
       setTimeout(() => history.push("/"), 500);
     }
+ 
   };
 
   return (
@@ -86,8 +78,7 @@ const AddEdit = () => {
             placeholder="Enter name"
             id="name"
             value={name}
-            onChange={handlerInputChange}
-            // ref={nameInputRef}
+            onChange={handlerName}
           />
         </div>
 
@@ -98,7 +89,7 @@ const AddEdit = () => {
             placeholder="Enter Email"
             id="email"
             value={email}
-            onChange={handlerInputChange}
+            onChange={handlerEmail}
             // ref={emailInputRef}
           />
         </div>
@@ -110,21 +101,18 @@ const AddEdit = () => {
             placeholder="Enter Contact Number"
             id="contact"
             value={contact}
-            onChange={handlerInputChange}
+            onChange={handlerContact}
             // ref={phoneInputRef}
           />
         </div>
         <div className={classes.actions}>
           <button type="submit" className={classes.button}>
-            Add
+            {id ? "Update" : "Add"}
           </button>
-
-          {/* {<button type="submit" className={classes.button}>
-            Update
-          </button>} */}
         </div>
       </form>
     </section>
+    // <h2>hello</h2>
   );
 };
 export default AddEdit;

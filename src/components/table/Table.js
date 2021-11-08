@@ -54,6 +54,7 @@ const Table = () => {
                 <td>{data[id].email}</td>
                 <td>{data[id].contact}</td>
                 <td>
+                  <div className={classes.btn}>
                   <Link to={`/update/${id}`}>
                     <button className={classes.edit}>Update</button>
                   </Link>
@@ -65,6 +66,7 @@ const Table = () => {
                   <Link to={`/view/${id}`}>
                     <button className={classes.view}>View</button>
                   </Link>
+                  </div>
                 </td>
               </tr>
             );

@@ -7,7 +7,7 @@
 }
 
 .style thead {
-    background-color: #009897;
+    background-color: #38015c;
     color: #ffffff;
     text-align: left;
 }
@@ -27,7 +27,7 @@
 
 
 .style tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid #38015c;
 }
 
 
@@ -45,6 +45,8 @@
     cursor: pointer;
 }
 
+
+
 /* btn */
 .edit {
     background-color: #008cba;
@@ -60,3 +62,27 @@
     background-color: #e7e7e7;
     color: black;
 }
+
+
+@media screen and (max-width: 500px) {
+    .style {
+      float: none;
+      display: block;
+      text-align: left;
+      width: auto;
+    }
+
+    .header  {
+      float: none;
+      display: block;
+      text-align: left;
+      justify-content: space-between;
+      width: auto;
+  
+    }
+  
+    .header-right {
+      float: none;
+    }
+  
+  }
