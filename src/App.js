@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AddEditPage from "./pages/AddEditPage";
 import Header from "./components/layout/Header";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/update/:id" component={AddEditPage} />
           <Route path="/view/:id" component={ViewPage} />
           <Route path="/about" component={AboutPage} />
+          <Route component={NotFoundPage} />
         </Switch>
       </div>
     </BrowserRouter>
